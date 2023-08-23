@@ -18,13 +18,7 @@ resource "aws_instance" "app_server" {
     ami             = "ami-0af6e9042ea5a4e3e"
     instance_type   = "t2.micro"
     key_name        = "iac-alura"
-    # user_data       = <<-EOF
-    #                     #!/bin/bash
-    #                     cd /home/ubuntu
-    #                     echo "<h1>Feito com terraform</h1>" > index.html
-    #                     nohup busybox httpd -f -p 8080 &
-    #                     EOF
     tags = {
-        Name = "Terceira Instancia Terraform"
+        Name = "Terraform Ansible Python"
     }
 }
