@@ -7,6 +7,8 @@
       - virtualenv
       update_cache: true
     become: true
+  - name: Deletando pasta do projeto
+    shell: rm -rf /home/ubuntu/tcc
   - name: Instalando dependencias com pip (Django e Django Rest)
     pip:
       virtualenv: /home/ubuntu/tcc/venv
@@ -15,3 +17,9 @@
       - djangorestframework
   - name: Iniciando o projeto
     shell: '. /home/ubuntu/tcc/venv/bin/activate; django-admin startproject setup /home/ubuntu/tcc/'
+  - name: Alterando o allowed_hosts no settings
+    lineinfile: 
+      path: /home/ubuntu/tcc/setup/settings.py
+      regexp: 'ALLOWED_HOSTS'
+      line: 'ALLOWED_HOSTS = ["*"]'
+      backrefs: true
